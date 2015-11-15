@@ -19,4 +19,10 @@
     (make-set list empty))
 
 (define (set-cardinality set)
-    (length (list-to-set set)))
+    (define (countElements set numElements)
+        (cond
+            [(empty? set) numElements]
+            [(member? (car set) (cdr set))
+                (countElements (cdr set) numElements)]
+            [else (countElements (cdr set) (+ numElements 1))]))
+    (countElements set 0))
