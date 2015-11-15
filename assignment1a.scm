@@ -9,6 +9,15 @@
         set
         (cons element set)))
 
+(define (list-to-set list)
+    ;; take only unique elements from the list and put them in the set
+    (define (make-set list set)
+        (cond
+            [(empty? list) set]
+            [else
+                (make-set (cdr list) (add-element (car list) set))]))
+    (make-set list empty))
+
 (define (set-cardinality set)
     (define (countElements set numElements)
         (cond
