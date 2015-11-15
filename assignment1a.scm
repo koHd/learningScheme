@@ -4,6 +4,11 @@
         [(equal? element (car set)) #t]
         [else (member? element (cdr set))]))
 
+(define (add-element element set)
+    (if (member? element set)
+        set
+        (cons element set)))
+
 (define (set-cardinality set)
     (define (countElements set numElements)
         (cond
