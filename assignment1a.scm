@@ -22,7 +22,5 @@
     (define (countElements set numElements)
         (cond
             [(empty? set) numElements]
-            [(member? (car set) (cdr set))
-                (countElements (cdr set) numElements)]
             [else (countElements (cdr set) (+ numElements 1))]))
-    (countElements set 0))
+    (countElements (list-to-set set) 0))
