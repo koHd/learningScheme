@@ -19,8 +19,8 @@
     (make-set list empty))
 
 (define (set-cardinality set)
-    (define (countElements set numElements)
+    (define (count-elements set numElements)
         (cond
             [(empty? set) numElements]
-            [else (countElements (cdr set) (+ numElements 1))]))
-    (countElements (list-to-set set) 0))
+            [else (count-elements (cdr set) (+ numElements 1))]))
+    (count-elements (list-to-set set) 0))
