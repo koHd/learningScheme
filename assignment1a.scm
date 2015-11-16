@@ -24,3 +24,9 @@
             [(empty? set) numElements]
             [else (count-elements (cdr set) (+ numElements 1))]))
     (count-elements (list-to-set set) 0))
+
+(define (set-union set1 set2)
+    (cond
+        [(empty? set1) set2]
+        [else
+            (set-union (cdr set1) (add-element (car set1) set2))]))
