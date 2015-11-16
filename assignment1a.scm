@@ -29,4 +29,5 @@
     (cond
         [(empty? set1) set2]
         [else
-            (set-union (cdr set1) (add-element (car set1) set2))]))
+            (set-union (cdr set1) 
+                        (add-element (car set1) (list-to-set set2)))]))
