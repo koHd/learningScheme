@@ -31,5 +31,4 @@
     (cond
         [(empty? setA) setUnion]
         [else
-            (set-union (cdr setA) 
-                        (add-element (car setA) setUnion))]))
+            (set-union (cdr setA) (add-element (car setA) setUnion))]))
