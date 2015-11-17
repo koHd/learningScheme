@@ -26,8 +26,10 @@
     (count-elements (list-to-set set) 0))
 
 (define (set-union set1 set2)
+    (define setA (list-to-set set1))
+    (define setUnion (list-to-set set2))
     (cond
-        [(empty? set1) set2]
+        [(empty? setA) setUnion]
         [else
-            (set-union (cdr set1) 
-                        (add-element (car set1) (list-to-set set2)))]))
+            (set-union (cdr setA) 
+                        (add-element (car setA) setUnion))]))
