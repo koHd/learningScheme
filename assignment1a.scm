@@ -9,31 +9,31 @@
         set
         (cons element set)))
 
-(define (make-set list set)
+(define (make-set lst set)
         (cond
-            [(empty? list) set]
-            [else (make-set (cdr list) (add-element (car list) set))]))
+            [(empty? lst) set]
+            [else (make-set (cdr lst) (add-element (car lst) set))]))
 
-(define (list-to-set list)
-    (make-set list empty))
+(define (lst-to-set lst)
+    (make-set lst empty))
 
 (define (set-cardinality set)
     (define (count-elements set numElements)
         (cond
             [(empty? set) numElements]
             [else (count-elements (cdr set) (+ numElements 1))]))
-    (count-elements (list-to-set set) 0))
+    (count-elements (lst-to-set set) 0))
 
 (define (set-union set1 set2)
-    (define setA (list-to-set set1))
-    (define setUnion (list-to-set set2))
+    (define setA (lst-to-set set1))
+    (define setUnion (lst-to-set set2))
     (cond
         [(empty? setA) setUnion]
         [else (set-union (cdr setA) (add-element (car setA) setUnion))]))
 
 (define (set-intersection set1 set2)
-    (define setA (list-to-set set1))
-        (define setB (list-to-set set2))
+    (define setA (lst-to-set set1))
+        (define setB (lst-to-set set2))
         (cond
             [(empty? setA) '()]
             [(member? (car setA) setB)
