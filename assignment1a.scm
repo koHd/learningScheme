@@ -39,3 +39,11 @@
             [(member? (car setA) setB)
                 (cons (car setA) (set-intersection (cdr setA) setB))]
             [else (set-intersection (cdr setA) setB)]))
+
+(define (set-difference set1 set2)
+    (cond
+        [(empty? set1) '()]
+        [(not (member? (car set1) set2))
+            (cons (car set1) (set-difference (cdr set1) set2))]
+        [else (set-difference (cdr set1) set2)]))
+            
