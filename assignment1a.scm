@@ -33,12 +33,12 @@
 
 (define (set-intersection set1 set2)
     (define setA (lst-to-set set1))
-        (define setB (lst-to-set set2))
-        (cond
-            [(empty? setA) '()]
-            [(member? (car setA) setB)
-                (cons (car setA) (set-intersection (cdr setA) setB))]
-            [else (set-intersection (cdr setA) setB)]))
+    (define setB (lst-to-set set2))
+    (cond
+        [(empty? setA) '()]
+        [(member? (car setA) setB)
+            (cons (car setA) (set-intersection (cdr setA) setB))]
+        [else (set-intersection (cdr setA) setB)]))
  
 (define (set-difference set1 set2)
     (cond
