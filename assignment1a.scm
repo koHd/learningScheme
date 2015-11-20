@@ -48,11 +48,4 @@
         [else (set-difference (cdr set1) set2)]))
 
 (define (set-equal? set1 set2)
-    (define (compare-sets set1 set2)
-        (cond
-            [(empty? set1) #t]
-            [(not (member? (car set1) set2)) #f]
-            [else (compare-sets (cdr set1) set2)]))
-    (cond 
-        [(not (= (set-cardinally set1) (set-cardinally set2))) #f]
-        [else (compare-sets set1 set2)]))
+    (if (= (set-cardinally (set-intersection set1 set2)) (set-cardinally (lst-to-set set1))) #t #f))
