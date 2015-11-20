@@ -17,7 +17,7 @@
 (define (lst-to-set lst)
     (make-set lst empty))
 
-(define (set-cardinality set)
+(define (set-cardinally set)
     (define (count-elements set numElements)
         (cond
             [(empty? set) numElements]
@@ -54,5 +54,5 @@
             [(not (member? (car set1) set2)) #f]
             [else (compare-sets (cdr set1) set2)]))
     (cond 
-        [(not (= (set-cardinality set1) (set-cardinality set2))) #f]
+        [(not (= (set-cardinally set1) (set-cardinally set2))) #f]
         [else (compare-sets set1 set2)]))
