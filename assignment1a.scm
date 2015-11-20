@@ -49,3 +49,8 @@
 
 (define (set-equal? s1 s2)
     (if (= (set-cardinally (set-intersection s1 s2)) (set-cardinally (lst-to-set s1))) #t #f))
+
+(define (set-map-join f s)
+    (if (empty? s)
+        '()
+        (cons (f (car s)) (set-map-join f (cdr s)))))
