@@ -55,6 +55,9 @@
         '()
         (cons (f (car s)) (set-map-join f (cdr s)))))
 
+(define (free-variables lambdaApplication)
+    (car lambdaApplication))
+
 (define test-it
     (lambda ()
         (define set1 '(a c b))
@@ -64,4 +67,5 @@
             [(not (= (set-cardinally set1) 3)) "set-cardinally failed test case 1"]
             [(= (set-cardinally set1) 4) "set-cardinally failed test case 2"]
             [(not (set-equal? set1 set2)) "set-equal? failed test case 1"]
-            [(set-equal? set1 set3) "set-equal? failed test case 2."])))
+            [(set-equal? set1 set3) "set-equal? failed test case 2."]
+            [else #t])))
