@@ -55,8 +55,24 @@
         '()
         (cons (f (car s)) (set-map-join f (cdr s)))))
 
+(define (bound-variables lambdaApplication)
+        (cond
+            [(empty? lambdaApplication)
+                '()]
+            [(equal? 'lambda (car lambdaApplication))
+                (cons (cadr lambdaApplication) (bound-variables (cdr lambdaApplication)))]
+            [else (bound-variables (cdr lambdaApplication))]))
+
 (define (free-variables lambdaApplication)
-    (car lambdaApplication))
+        (define boundVariables (bound-variables lambdaApplication))
+        (cond
+            [(empty? lambdaApplication)
+                '()]
+            [(equal? 'lambda (car lambdaApplication))
+                (free-variables (cdr lambdaApplication))]
+            [(not (member? (car lambdaApplication) boundVariables))
+                (cons (car lambdaApplication) (free-variables (cdr lambdaApplication)))]
+            [else '()]))
 
 (define test-it
     (lambda ()
