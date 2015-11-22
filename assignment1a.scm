@@ -84,4 +84,7 @@
             [(= (set-cardinally set1) 4) "set-cardinally failed test case 2"]
             [(not (set-equal? set1 set2)) "set-equal? failed test case 1"]
             [(set-equal? set1 set3) "set-equal? failed test case 2."]
+            [(not (set-equal? (set-union set1 set3) '(a b c d f e))) "set-union failed test case 1."]
+            [(set-equal? (set-union set1 set3) '(a b c)) "set-union failed test case 2."]
+            [(not (set-equal? (set-intersection set1 set3) '(c))) "set-intersection failed test case 1."]
             [else #t])))
