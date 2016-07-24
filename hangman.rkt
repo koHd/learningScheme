@@ -34,10 +34,6 @@
 ; store secret word (hard coded temporarily while in the process of developing):
 (define secret-word '(s e c r e t))
 
-; check if letter is in the secret word
-(define (letter-in-secret-word? letter)
-  (letter-in-word? letter secret-word))
-
 ; check if a letter in the secret word should be hidden or revealed
 (define (reveal-letter? secret-word-letter guessed-letters)
   (element-in-set? secret-word-letter guessed-letters))
