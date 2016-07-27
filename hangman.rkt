@@ -1,7 +1,6 @@
 #lang racket
 ; a game of single player hangman
 ; a secret word must be guessed by a player via a series of individual letter guesses until they can guess the secret word
-; the player has 7 "lives"
 ; each incorrect guess incurs a penalty lives - 1
 ; game is played over a number of rounds involving a single guess from the player
 ; game ends when player's lives reach 0 or secret word is correctly guessed by player
@@ -79,5 +78,10 @@
     [else
      (if (zero? round) (displayln "Lets play hangman!") null)
      (new-round-screen)
-     (display "Can you guess the word? -> ")
-     (secret-word-known-so-far secret-word guessed-letters)]))
+     (display "Can you guess the word? ")
+     (secret-word-known-so-far secret-word guessed-letters)
+     (display "Guess a letter: ")
+     (define guess (read))
+     (if (letter-in-word? guess secret-word)
+        (display "You guessed correct!")
+        (display "You guessed incorrect"))]))
