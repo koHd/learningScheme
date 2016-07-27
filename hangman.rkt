@@ -79,9 +79,14 @@
      (if (zero? round) (displayln "Lets play hangman!") null)
      (new-round-screen)
      (display "Can you guess the word? ")
-     (secret-word-known-so-far secret-word guessed-letters)
+     (display (secret-word-known-so-far secret-word guessed-letters))
+     (newline)
      (display "Guess a letter: ")
      (define guess (read))
-     (if (letter-in-word? guess secret-word)
-        (display "You guessed correct!")
-        (display "You guessed incorrect"))]))
+     (cond
+       [(letter-in-word? guess secret-word)
+        (display "Correct!")
+        (play-hangman (+ round 1) secret-word player-lives (cons guess guessed-letters))]
+       [else
+        (display "Incorrect.")
+        (play-hangman (+ round 1) secret-word (- player-lives 1) (cons guess guessed-letters))])]))
