@@ -37,15 +37,11 @@
 ; store secret word (hard coded temporarily while in the process of developing):
 (define secret-word '(s e c r e t))
 
-; check if a guess is in a word:
-(define (letter-in-word? letter word)
-  (element-in-set? letter word))
-
 ; display the secret word to the player with successfully guessed letters revealed
 (define (secret-word-known-so-far secret-word guessed-letters)
   (cond
     [(empty? secret-word) null]
-    [(letter-in-word? (car secret-word) guessed-letters)
+    [(element-in-set? (car secret-word) guessed-letters)
      (cons (car secret-word) (secret-word-known-so-far (cdr secret-word) guessed-letters))]
     [else (cons '_ (secret-word-known-so-far (cdr secret-word) guessed-letters))]))
 
@@ -87,7 +83,7 @@
      (new-round-screen)
      (define guess (read))
      (cond
-       [(letter-in-word? guess secret-word)
+       [(element-in-set? guess secret-word)
         (display "Correct!")
         (newline)
         (play-hangman (+ round 1) secret-word player-lives (cons guess guessed-letters))]
