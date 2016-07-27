@@ -53,7 +53,8 @@
     (display "Unlucky! You failed to win this time. Better luck next time."))
 
   (define (new-round-screen)
-    (if (zero? round) (displayln "Lets play hangman!") null)
+    (if (zero? round) (display "Lets play hangman!") null)
+    (newline)
     (newline)
     (display "Round: ")
     (display round)
@@ -78,11 +79,9 @@
      (cond
        [(element-in-set? guess secret-word)
         (display "Correct!")
-        (newline)
         (play-hangman (+ round 1) secret-word player-lives (cons guess guessed-letters))]
        [else
         (display "Incorrect.")
-        (newline)
         (play-hangman (+ round 1) secret-word (- player-lives 1) (cons guess guessed-letters))])]))
 
 (define (hangman)
