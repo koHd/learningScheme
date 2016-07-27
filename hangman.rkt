@@ -90,3 +90,6 @@
        [else
         (display "Incorrect.")
         (play-hangman (+ round 1) secret-word (- player-lives 1) (cons guess guessed-letters))])]))
+
+(define (hangman)
+  (play-hangman 0 secret-word 7 null))
