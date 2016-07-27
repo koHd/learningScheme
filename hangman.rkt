@@ -17,6 +17,10 @@
 ; - - if the guessed word is correct, all letters become known and we continue to next round
 ; - - else the player loses a life and we continue to next round
 
+; things that can be added to improve the game:
+; - random word chosen as secret word
+; - - choose word randomly from a local dictionary file
+
 (define (element-in-set? element set)
   (cond
     [(empty? set) #f]
@@ -33,10 +37,6 @@
 ; store secret word (hard coded temporarily while in the process of developing):
 (define secret-word '(s e c r e t))
 
-; check if a letter in the secret word should be hidden or revealed
-(define (reveal-letter? secret-word-letter guessed-letters)
-  (element-in-set? secret-word-letter guessed-letters))
-
 ; check if a guess is in a word:
 (define (letter-in-word? letter word)
   (element-in-set? letter word))
@@ -45,7 +45,7 @@
 (define (secret-word-known-so-far secret-word guessed-letters)
   (cond
     [(empty? secret-word) null]
-    [(reveal-letter? (car secret-word) guessed-letters)
+    [(letter-in-word? (car secret-word) guessed-letters)
      (cons (car secret-word) (secret-word-known-so-far (cdr secret-word) guessed-letters))]
     [else (cons '_ (secret-word-known-so-far (cdr secret-word) guessed-letters))]))
 
