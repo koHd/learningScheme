@@ -89,9 +89,11 @@
      (cond
        [(letter-in-word? guess secret-word)
         (display "Correct!")
+        (newline)
         (play-hangman (+ round 1) secret-word player-lives (cons guess guessed-letters))]
        [else
         (display "Incorrect.")
+        (newline)
         (play-hangman (+ round 1) secret-word (- player-lives 1) (cons guess guessed-letters))])]))
 
 (define (hangman)
