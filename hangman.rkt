@@ -21,24 +21,11 @@
 ; - random word chosen as secret word
 ; - - choose word randomly from a local dictionary file
 
-(define (element-in-set? element set)
-  (cond
-    [(empty? set) #f]
-    [(equal? element (car set)) #t]
-    [else (element-in-set? element (cdr set))]))
+; launcher function
+(define (hangman)
+  (play-hangman 0 secret-word 7 null))
 
-; store secret word (hard coded temporarily while in the process of developing):
-(define secret-word '(s e c r e t))
-
-; display the secret word to the player with successfully guessed letters revealed
-(define (secret-word-known-so-far secret-word guessed-letters)
-  (cond
-    [(empty? secret-word) null]
-    [(element-in-set? (car secret-word) guessed-letters)
-     (cons (car secret-word) (secret-word-known-so-far (cdr secret-word) guessed-letters))]
-    [else (cons '_ (secret-word-known-so-far (cdr secret-word) guessed-letters))]))
-
-; round
+; the game function
 (define (play-hangman round secret-word player-lives guessed-letters)
   
   (define (win-screen)
@@ -84,5 +71,20 @@
         (display "Incorrect.")
         (play-hangman (+ round 1) secret-word (- player-lives 1) (cons guess guessed-letters))])]))
 
-(define (hangman)
-  (play-hangman 0 secret-word 7 null))
+; store secret word (hard coded temporarily while in the process of developing):
+(define secret-word '(s e c r e t))
+
+; secret word with only successfuly guessed letters revealed
+(define (secret-word-known-so-far secret-word guessed-letters)
+  (cond
+    [(empty? secret-word) null]
+    [(element-in-set? (car secret-word) guessed-letters)
+     (cons (car secret-word) (secret-word-known-so-far (cdr secret-word) guessed-letters))]
+    [else (cons '_ (secret-word-known-so-far (cdr secret-word) guessed-letters))]))
+
+; general purpose helper function for checking if a letter is in a set of letters
+(define (element-in-set? element set)
+  (cond
+    [(empty? set) #f]
+    [(equal? element (car set)) #t]
+    [else (element-in-set? element (cdr set))]))
