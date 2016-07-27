@@ -27,13 +27,6 @@
     [(equal? element (car set)) #t]
     [else (element-in-set? element (cdr set))]))
 
-(define (set-cardinality set)
-  (define (count-elements set count)
-    (if (empty? set)
-        count
-        (count-elements (cdr set) (+ count 1))))
-  (count-elements set 0))
-
 ; store secret word (hard coded temporarily while in the process of developing):
 (define secret-word '(s e c r e t))
 
