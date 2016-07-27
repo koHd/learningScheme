@@ -64,24 +64,24 @@
     (display "Unlucky! You failed to win this time. Better luck next time."))
 
   (define (new-round-screen)
+    (if (zero? round) (displayln "Lets play hangman!") null)
     (newline)
     (display "Round: ")
     (display round)
     (newline)
     (display "Lives Remaining: ")
     (display player-lives)
-    (newline))
+    (newline)
+    (display "Can you guess the word? ")
+    (display (secret-word-known-so-far secret-word guessed-letters))
+    (newline)
+    (display "Guess a letter: "))
 
   (cond
     [(equal? secret-word (secret-word-known-so-far secret-word guessed-letters)) (win-screen)]
     [(zero? player-lives) (lose-screen)]
     [else
-     (if (zero? round) (displayln "Lets play hangman!") null)
      (new-round-screen)
-     (display "Can you guess the word? ")
-     (display (secret-word-known-so-far secret-word guessed-letters))
-     (newline)
-     (display "Guess a letter: ")
      (define guess (read))
      (cond
        [(letter-in-word? guess secret-word)
